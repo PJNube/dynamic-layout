@@ -10,7 +10,7 @@ const ExtMap = getAllExtensions();
 interface TabInfo {
   key: string;
   title: string;
-  extension: any;
+  extension: React.FC;
 }
 
 interface MenuInfo {
@@ -18,12 +18,12 @@ interface MenuInfo {
   title: string;
 }
 
-// const initialExtensions: TabInfo[] = [
+// const initialTabs: TabInfo[] = [
 //   { title: "Welcome Page", extension: "ext-welcome" },
 //   { title: "Wiresheet Page", extension: "ext-flow" },
 //   { title: "Setting Page", extension: "ext-setting" },
 // ];
-const initialExtensions: TabInfo[] = [];
+// const initialTabs: TabInfo[] = [];
 
 const MenuItems: MenuInfo[] = [
   {
@@ -50,26 +50,24 @@ const MenuItems: MenuInfo[] = [
 
 function App() {
   const [currentExtension, setCurrentExtension] = useState("ext-welcome");
-  const [extensions, setExtensions] = useState<TabInfo[]>(initialExtensions);
+  const [tabs, setTabs] = useState<TabInfo[]>([]);
 
   const onCloseWidget = (key: string) => {
     // console.log(key);
-    setExtensions(extensions.filter((ext) => ext.key !== key));
+    setTabs(tabs.filter((ext) => ext.key !== key));
   };
   const onTabChange = (key: string) => {
     setCurrentExtension(key);
   };
 
   const onClickMenu = (info: MenuInfo) => {
-    const found = extensions.find((ext) => ext.key === info.key);
+    const { key, title } = info;
+    const found = tabs.find((ext) => ext.key === key);
     if (!found) {
-      const extension = ExtMap.has(info.key) ? ExtMap.get(info.key) : NotFound;
-      setExtensions([
-        ...extensions,
-        { title: info.title, key: info.key, extension },
-      ]);
+      const extension = ExtMap.has(key) ? ExtMap.get(key) : NotFound;
+      setTabs([...tabs, { title, key, extension }]);
     }
-    setCurrentExtension(info.key);
+    setCurrentExtension(key);
   };
   return (
     <div className="main-layout">
@@ -85,7 +83,7 @@ function App() {
         </ul>
       </div>
       <div className="content-wrapper">
-        {extensions.length == 0 ? (
+        {tabs.length == 0 ? (
           <h4 style={{ marginTop: 100 }}>
             Hi, Welcome. <br />
             Select the menu on the left.
@@ -97,16 +95,16 @@ function App() {
             onValueChange={onTabChange}
           >
             <Tabs.List color="indigo">
-              {extensions.map((ext) => (
-                <div className="flex relative" key={ext.key}>
-                  <Tabs.Trigger value={ext.key}>{ext.title}</Tabs.Trigger>
+              {tabs.map((p) => (
+                <div className="flex relative" key={p.key}>
+                  <Tabs.Trigger value={p.key}>{p.title}</Tabs.Trigger>
                   <div className="absolute right-0">
                     <IconButton
                       variant="soft"
                       className="relative top-0 right-0"
                       onClick={(ev) => {
                         ev.stopPropagation();
-                        onCloseWidget(ext.key);
+                        onCloseWidget(p.key);
                       }}
                       style={{ padding: 0, width: 13, height: 13 }}
                     >
@@ -117,11 +115,11 @@ function App() {
               ))}
             </Tabs.List>
             <Box>
-              {extensions.map((ext) => {
-                const Ext = ext.extension;
+              {tabs.map((p) => {
+                const { key, extension: Extension } = p;
                 return (
-                  <Tabs.Content key={ext.key} value={ext.key}>
-                    <Ext />
+                  <Tabs.Content key={key} value={key}>
+                    <Extension />
                   </Tabs.Content>
                 );
               })}
