@@ -1,4 +1,11 @@
-const getAllExtensions = () => {
+import { lazy } from "react";
+
+/**
+ * Import all extensions from the ./extensions folder
+ * and export them as a Map
+ *
+ * */
+export const getAllExtensions = () => {
   const files: Record<string, any> = import.meta.glob("./**/index.tsx", {
     eager: true,
   });
@@ -12,4 +19,13 @@ const getAllExtensions = () => {
   return extensions;
 };
 
-export default getAllExtensions;
+// export default getAllExtensions;
+
+const AllExtensions: Record<string, React.FC> = {
+  "ext-flow": lazy(() => import("./flow/index.tsx")),
+  "ext-setting": lazy(() => import("./setting/index.tsx")),
+  "ext-welcome": lazy(() => import("./welcome/index.tsx")),
+  "ext-dashboard": lazy(() => import("./dashboard/index.tsx")),
+};
+
+export default AllExtensions;

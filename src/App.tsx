@@ -1,11 +1,11 @@
 import "./style/App.scss";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Tabs, Box, IconButton } from "@radix-ui/themes";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import NotFound from "./components/NotFound";
-import getAllExtensions from "./extensions/index";
-
-const ExtMap = getAllExtensions();
+import AllExtensions from "./extensions/index";
+// import { getAllExtensions } from "./extensions/index";
+// const ExtMap = getAllExtensions();
 
 interface TabInfo {
   key: string;
@@ -18,11 +18,6 @@ interface MenuInfo {
   title: string;
 }
 
-// const initialTabs: TabInfo[] = [
-//   { title: "Welcome Page", extension: "ext-welcome" },
-//   { title: "Wiresheet Page", extension: "ext-flow" },
-//   { title: "Setting Page", extension: "ext-setting" },
-// ];
 // const initialTabs: TabInfo[] = [];
 
 const MenuItems: MenuInfo[] = [
@@ -43,7 +38,7 @@ const MenuItems: MenuInfo[] = [
     title: "Wiresheet Page",
   },
   {
-    key: "ext-none",
+    key: "ext-xxxxxxxxx",
     title: "None Page",
   },
 ];
@@ -64,7 +59,7 @@ function App() {
     const { key, title } = info;
     const found = tabs.find((ext) => ext.key === key);
     if (!found) {
-      const extension = ExtMap.has(key) ? ExtMap.get(key) : NotFound;
+      const extension = AllExtensions?.[key] || NotFound;
       setTabs([...tabs, { title, key, extension }]);
     }
     setCurrentExtension(key);
@@ -119,7 +114,11 @@ function App() {
                 const { key, extension: Extension } = p;
                 return (
                   <Tabs.Content key={key} value={key}>
-                    <Extension />
+                    <Suspense
+                      fallback={<h1 className="loading-panel">Loading...</h1>}
+                    >
+                      <Extension />
+                    </Suspense>
                   </Tabs.Content>
                 );
               })}
