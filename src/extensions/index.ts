@@ -4,11 +4,11 @@ const getAllExtensions = () => {
   });
   const extensions = new Map();
   Object.keys(files).map((key) => {
-    const ext = files[key].default;
     const name = "ext-" + key.split("/")[1];
+    const ext = files[key].default;
     extensions.set(name, ext);
   });
-  console.log(extensions);
+  // console.log(extensions);
   return extensions;
 };
 
