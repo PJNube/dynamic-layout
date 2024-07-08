@@ -13,6 +13,9 @@ export class ExtensionManager {
     this.allExtensions = this.getAllExtensions();
   }
 
+  /**
+   * Automatically get all extensions
+   */
   protected getAllExtensions = () => {
     const files: Record<string, any> = import.meta.glob("./**/index.tsx", {
       eager: true,
@@ -30,7 +33,7 @@ export class ExtensionManager {
   /**
    * Manually get all extensions
    */
-  // protected getAllExtensions2 = () => {
+  // protected getAllExtensions = () => {
   //   return {
   //     "ext-flow": lazy(() => import("./flow/index.tsx")),
   //     "ext-setting": lazy(() => import("./setting/index.tsx")),
