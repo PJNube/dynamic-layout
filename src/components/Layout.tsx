@@ -53,7 +53,7 @@ export default function LayoutView() {
   const [currentExtension, setCurrentExtension] = useState("");
   const [tabs, setTabs] = useState<TabInfo[]>([]);
 
-  const onCloseWidget = (key: string) => {
+  const onCloseTab = (key: string) => {
     // console.log(key);
     const newTabs = tabs.filter((ext) => ext.key !== key);
     setTabs(newTabs);
@@ -109,7 +109,7 @@ export default function LayoutView() {
                       className="relative top-0 right-0"
                       onClick={(ev) => {
                         ev.stopPropagation();
-                        onCloseWidget(p.key);
+                        onCloseTab(p.key);
                       }}
                       style={{ padding: 0, width: 13, height: 13 }}
                     >
