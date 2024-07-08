@@ -1,8 +1,9 @@
 import { injectable } from "inversify";
+import { IExtensionManager } from "../common/types";
 // import { lazy } from "react";
 
 @injectable()
-export class ExtensionManager {
+export class ExtensionManager implements IExtensionManager {
   protected allExtensions = new Map();
 
   constructor() {

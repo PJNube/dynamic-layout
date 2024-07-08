@@ -3,8 +3,7 @@ import { Tabs, Box, IconButton } from "@radix-ui/themes";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import NotFound from "./NotFound";
 import { useInjection } from "inversify-react";
-import { TYPES } from "../common/types";
-import { ExtensionManager } from "../extensions";
+import { TYPES, IExtensionManager } from "../common/types";
 
 // import { getAllExtensions } from "./extensions/index";
 // const ExtMap = getAllExtensions();
@@ -46,7 +45,7 @@ const MenuItems: MenuInfo[] = [
 ];
 
 export default function LayoutView() {
-  const extensionManager = useInjection<ExtensionManager>(
+  const extensionManager = useInjection<IExtensionManager>(
     TYPES.ExtensionManager
   );
 
