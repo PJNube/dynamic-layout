@@ -2365,6 +2365,16 @@ invariant@^2.2.4:
   dependencies:
     loose-envify "^1.0.0"
 
+inversify-react@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/inversify-react/-/inversify-react-1.1.1.tgz#4c1e4aeaed857b5da82f224bd68ae901d4a8cd9b"
+  integrity sha512-uYkR5PqiGqb78wPgQ9d49mLL3BgmgT7UCQ60hsnLbrYYh9Zktwk2Qi3qWvHyDLZ+ZsyzlTEzaEOD6cMCNzc1Yg==
+
+inversify@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npmmirror.com/inversify/-/inversify-6.0.2.tgz#dc7fa0348213d789d35ffb719dea9685570989c7"
+  integrity sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==
+
 is-binary-path@~2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/is-binary-path/-/is-binary-path-2.1.0.tgz"
@@ -2872,6 +2882,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+reflect-metadata@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npmmirror.com/reflect-metadata/-/reflect-metadata-0.2.2.tgz#400c845b6cba87a21f2c65c4aeb158f4fa4d9c5b"
+  integrity sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==
 
 resolve-from@^4.0.0:
   version "4.0.0"
