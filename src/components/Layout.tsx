@@ -55,9 +55,10 @@ export default function LayoutView() {
 
   const onCloseWidget = (key: string) => {
     // console.log(key);
-    setTabs(tabs.filter((ext) => ext.key !== key));
+    const newTabs = tabs.filter((ext) => ext.key !== key);
+    setTabs(newTabs);
     if (currentExtension === key) {
-      setCurrentExtension(tabs[0]?.key || "");
+      setCurrentExtension(newTabs[0]?.key || "");
     }
   };
   const onTabChange = (key: string) => {
@@ -88,9 +89,9 @@ export default function LayoutView() {
       </div>
       <div className="content-wrapper">
         {tabs.length == 0 ? (
-          <h4 style={{ marginTop: 100 }}>
+          <h4 className="content-tip">
             Hi, Welcome. <br />
-            Select the menu on the left.
+            Click the menus on the left.
           </h4>
         ) : (
           <Tabs.Root

@@ -81,6 +81,14 @@ body {
   .content-wrapper {
     flex: 1;
     padding: 15px;
+    .content-tip {
+      min-height: 40vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
   }
 }
 
